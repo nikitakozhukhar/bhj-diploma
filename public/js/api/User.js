@@ -4,12 +4,16 @@
  * Имеет свойство URL, равное '/user'.
  * */
 class User {
+  constructor() {
+    URL: '/user';
+  }
+ 
   /**
    * Устанавливает текущего пользователя в
    * локальном хранилище.
    * */
   static setCurrent(user) {
-
+    localStorage.setItem('user', user)
   }
 
   /**
@@ -17,7 +21,7 @@ class User {
    * пользователе из локального хранилища.
    * */
   static unsetCurrent() {
-
+    localStorage.removeItem('user')
   }
 
   /**
