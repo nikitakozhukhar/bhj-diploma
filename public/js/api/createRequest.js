@@ -11,25 +11,41 @@ const createRequest = (options = {}) => {
     return
   }
 
+  xhr.open( options.method, options.url );
+  if (options.method == 'GET') {
+    xhr.send();
+  } else {
+    formData = new FormData;
+    formData.append( `${Object.keys(options.data)[0]}, ${options.data.mail}`);
+    formData.append( `${Object.keys(options.data)[1]}, ${options.data.password}`);
+
+    xhr.open( 'POST', 'https://example.com' );
+    xhr.send( formData );
+    xhr.send(options.data);
+  }
   try {
-    xhr.open( options.method, options.url );
+    
     callback: ( err, response ) => {
       /*
         при успешном выполнении err = null, response содержит данные ответа
       */
-      console.log( err ); // null
-      console.log( response ); // ответ
+      console.log( 'Ошибка, если есть', err  ); // null
+      console.log( 'Данные, если нет ошибки', response ); // ответ
     }
-    if (options.method == 'GET') {
-      xhr.send();
-    } else {
-      xhr.send(options.data);
-    }
+   
   }
   catch(error) {
-    calback(error)
+    callback(error)
   }
-
- return xhr
- 
+ console.log(response)
 };
+
+
+createRequest({
+  url: '/user',
+  data: {
+    mail: 'ivan@biz.pro',
+    password: 'odinodin'
+  },
+  method: 'GET',
+})
