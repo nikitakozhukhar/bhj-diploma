@@ -27,7 +27,7 @@ const createRequest = (options = {}) => {
     }
   }
   catch(error) {
-    calback(error)
+    callback(error)
   }
 
  return xhr
