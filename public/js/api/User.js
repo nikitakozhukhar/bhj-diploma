@@ -4,9 +4,7 @@
  * Имеет свойство URL, равное '/user'.
  * */
 class User {
-  constructor() {
-    URL: '/user';
-  }
+  static URL = '/user'
  
   /**
    * Устанавливает текущего пользователя в

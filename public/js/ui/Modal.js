@@ -12,7 +12,7 @@ class Modal {
    * необходимо выкинуть ошибку.
    * */
   constructor(element){
-
+    this.element = element;
   }
 
   /**
@@ -21,7 +21,10 @@ class Modal {
    * (с помощью метода Modal.onClose)
    * */
   registerEvents() {
-
+    if (this.element.getAttribute('data-dismiss') == "modal"){
+      this.element.Modal.onClose();
+    }
+    
   }
 
   /**
@@ -29,7 +32,7 @@ class Modal {
    * Закрывает текущее окно (Modal.close())
    * */
   onClose(e) {
-
+    
   }
   /**
    * Открывает окно: устанавливает CSS-свойство display

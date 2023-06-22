@@ -5,46 +5,42 @@
 const createRequest = (options = {}) => {
 
   const xhr = new XMLHttpRequest();
+  const formData = new FormData();
   xhr.responseType = 'json';
-  
+
   if (!options.method || !options.url) {
     return
   }
 
-  xhr.open( options.method, options.url );
+  xhr.open(options.method, options.url);
   if (options.method == 'GET') {
     xhr.send();
   } else {
-    formData = new FormData;
-    formData.append( `${Object.keys(options.data)[0]}, ${options.data.mail}`);
-    formData.append( `${Object.keys(options.data)[1]}, ${options.data.password}`);
+    for (let [key, value] of Object.entries(options.data)) {
+      formData.append(key, value);
+      xhr.send(formData);
+    }
 
-    xhr.open( 'POST', 'https://example.com' );
-    xhr.send( formData );
-    xhr.send(options.data);
   }
   try {
-    
-    callback: ( err, response ) => {
-      /*
-        при успешном выполнении err = null, response содержит данные ответа
-      */
-      console.log( 'Ошибка, если есть', err  ); // null
-      console.log( 'Данные, если нет ошибки', response ); // ответ
+
+    callback = (err, response) => {
+      console.log('Ошибка, если есть', err);
+      console.log('Данные, если нет ошибки', response); // ответ
     }
-   
+
   }
-  catch(error) {
-    callback(error)
+  catch (error) {
+    console.error('Ошибка, если есть', error);
   }
 };
 
 
-createRequest({
-  url: '/user',
-  data: {
-    mail: 'ivan@biz.pro',
-    password: 'odinodin'
-  },
-  method: 'GET',
-})
+// createRequest({
+//   url: '/user',
+//   data: {
+//     mail: 'ivan@biz.pro',
+//     password: 'odinodin'
+//   },
+//   method: 'GET',
+// })
