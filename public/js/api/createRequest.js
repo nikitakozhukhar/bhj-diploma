@@ -37,7 +37,6 @@ const createRequest = (options = {}) => {
   catch(error) {
     callback(error)
   }
- console.log(response)
 };
 
 
