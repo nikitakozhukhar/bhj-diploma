@@ -26,7 +26,7 @@ const createRequest = (options = {}) => {
 
     callback = (err, response) => {
       console.log('Ошибка, если есть', err);
-      console.log('Данные, если нет ошибки', response); // ответ
+      console.log('Данные, если нет ошибки', response);
     }
 
   }
@@ -34,13 +34,3 @@ const createRequest = (options = {}) => {
     console.error('Ошибка, если есть', error);
   }
 };
-
-
-// createRequest({
-//   url: '/user',
-//   data: {
-//     mail: 'ivan@biz.pro',
-//     password: 'odinodin'
-//   },
-//   method: 'GET',
-// })
