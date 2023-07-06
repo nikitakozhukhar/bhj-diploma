@@ -26,7 +26,7 @@ const createRequest = (options = {}) => {
 
     callback = (err, response) => {
       console.log('Ошибка, если есть', err);
-      console.log('Данные, если нет ошибки', response); // ответ
+      console.log('Данные, если нет ошибки', response);
     }
 
   }

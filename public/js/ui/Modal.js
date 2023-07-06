@@ -13,6 +13,9 @@ class Modal {
    * */
   constructor(element){
     this.element = element;
+    if (!element) {
+      throw new Error('Не получен элемент')
+    }
   }
 
   /**
@@ -21,7 +24,7 @@ class Modal {
    * (с помощью метода Modal.onClose)
    * */
   registerEvents() {
-    if (this.element.getAttribute('data-dismiss') == "modal"){
+    if (this.element.getAttribute('data-dismiss') == "modal") {
       this.element.Modal.onClose();
     }
     
