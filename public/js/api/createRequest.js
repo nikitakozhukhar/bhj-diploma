@@ -36,11 +36,14 @@ const createRequest = (options = {}) => {
 };
 
 
-// createRequest({
-//   url: '/user',
-//   data: {
-//     mail: 'ivan@biz.pro',
-//     password: 'odinodin'
-//   },
-//   method: 'GET',
-// })
+createRequest({
+  url: '/user',
+  data: {
+    mail: 'ivan@biz.pro',
+    password: 'odinodin'
+  },
+  method: 'GET',
+  callback: (e,r) => {
+    console.log(e,r)
+    }
+})
