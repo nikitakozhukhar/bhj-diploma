@@ -16,23 +16,37 @@ const createRequest = (options = {}) => {
   if (options.method == 'GET') {
     xhr.send();
   } else {
+    console.log(options.data);
+  
     for (let [key, value] of Object.entries(options.data)) {
-      formData.append(key, value);
-      xhr.send(formData);
+      console.log(key, value);
+      formData.append(Object.key, Object.value);
+      console.log(formData);
+      // xhr.send(formData);
     }
-
   }
   try {
-
     callback = (err, response) => {
       console.log('Ошибка, если есть', err);
       console.log('Данные, если нет ошибки', response);
     }
-
   }
   catch (error) {
     console.error('Ошибка, если есть', error);
   }
+
+  xhr.onload = function() {
+    if (xhr.status != 200) { 
+      console.log(`Ошибка ${xhr.status}: ${xhr.statusText}`);
+    } else {
+      console.log(`Готово, получили ${xhr.response}`); 
+    }
+  };
+
+  xhr.onerror = function() {
+    alert("Запрос не удался");
+  };
+
 };
 
 
@@ -42,7 +56,7 @@ createRequest({
     mail: 'ivan@biz.pro',
     password: 'odinodin'
   },
-  method: 'GET',
+  method: 'POST',
   callback: (e,r) => {
     console.log(e,r)
     }
