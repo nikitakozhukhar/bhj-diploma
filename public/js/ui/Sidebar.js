@@ -36,7 +36,7 @@ class Sidebar {
   static initAuthLinks() {
     const auth = document.querySelector('.menu-item_login');
     auth.addEventListener('click', () => {
-      console.log(App.getModal.modals) //?
+      console.log(App.getModal()) //?
     })
   }
 }
