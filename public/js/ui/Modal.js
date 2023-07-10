@@ -14,7 +14,7 @@ class Modal {
   constructor(element){
     this.element = element;
     if (!element) {
-      throw new Error('Не получен элемент')
+      throw new Error('Элемент не получен')
     }
   }
 
@@ -24,6 +24,12 @@ class Modal {
    * (с помощью метода Modal.onClose)
    * */
   registerEvents() {
+    const close = document.querySelectorAll('#data-dismiss');
+    close.forEach(e => {
+      e.addEventListener('click', () => {
+        this.open();
+      })
+    })
     if (this.element.getAttribute('data-dismiss') == "modal") {
       this.element.Modal.onClose();
     }

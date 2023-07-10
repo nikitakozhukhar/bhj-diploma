@@ -16,17 +16,17 @@ const createRequest = (options = {}) => {
   if (options.method == 'GET') {
     xhr.send();
   } else {
-    console.log(options.data);
-  
-    for (let [key, value] of Object.entries(options.data)) {
-      console.log(key, value);
-      formData.append(Object.key, Object.value);
+    
+    for (const [key, value] of Object.entries(options.data)) {
+      console.log(options.data);
+      formData.append(key, value);
       console.log(formData);
-      // xhr.send(formData);
     }
+    // xhr.send(formData);
+      
   }
   try {
-    callback = (err, response) => {
+    callback: (err, response) => {
       console.log('Ошибка, если есть', err);
       console.log('Данные, если нет ошибки', response);
     }
