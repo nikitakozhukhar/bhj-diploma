@@ -27,7 +27,7 @@ class User {
    * из локального хранилища
    * */
   static current() {
-
+    return localStorage.getItem('user')
   }
 
   /**

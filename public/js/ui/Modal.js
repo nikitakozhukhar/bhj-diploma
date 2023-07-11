@@ -15,6 +15,8 @@ class Modal {
     this.element = element;
     if (!element) {
       throw new Error('Элемент не получен')
+    } else {
+      this.registerEvents();
     }
   }
 
@@ -24,12 +26,16 @@ class Modal {
    * (с помощью метода Modal.onClose)
    * */
   registerEvents() {
-    const target = document.addEventListener('click', (e) => {
-      console.log(e.target)
+    const dismis = document.querySelectorAll('#data-dismiss');
+    dismis.forEach(elem => {
+      elem.addEventListener('click', () => {
+        if (this.element.getAttribute('data-dismiss') == "modal") {
+          this.onClose(this.element);
+          this.close();
+          this.open()
+        }
+      })
     })
-    if (this.element.getAttribute('data-dismiss') == "modal") {
-      this.element.Modal.onClose();
-    }
     
   }
 
@@ -38,19 +44,21 @@ class Modal {
    * Закрывает текущее окно (Modal.close())
    * */
   onClose(e) {
-    
+    e.addEventListener('click', () => {
+      this.close()
+    })
   }
   /**
    * Открывает окно: устанавливает CSS-свойство display
    * со значением «block»
    * */
   open() {
-
+    this.element.style.display = 'block'
   }
   /**
    * Закрывает окно: удаляет CSS-свойство display
    * */
   close(){
-
+    this.element.style.display = 'none'
   }
 }

@@ -13,16 +13,20 @@ const createRequest = (options = {}) => {
   }
 
   xhr.open(options.method, options.url);
+  console.log(xhr.respose);
   if (options.method == 'GET') {
     xhr.send();
-  } else {
-    console.log(options.data);
-  
+    console.log(xhr.respose);
+  }
+  if (options.method == 'POST') {
+
     for (let [key, value] of Object.entries(options.data)) {
       console.log(key, value);
-      formData.append(Object.key, Object.value);
-      console.log(formData);
-      // xhr.send(formData);
+      formData.append(key, value);
+      
+      xhr.open(options.method, options.url)
+      xhr.send(formData);
+      
     }
   }
   try {
@@ -34,18 +38,18 @@ const createRequest = (options = {}) => {
   catch (error) {
     console.error('Ошибка, если есть', error);
   }
-
-  xhr.onload = function() {
-    if (xhr.status != 200) { 
+ 
+  xhr.onload = function () {
+    if (xhr.status != 200) {
       console.log(`Ошибка ${xhr.status}: ${xhr.statusText}`);
     } else {
-      console.log(`Готово, получили ${xhr.response}`); 
+      console.log(`Готово, получили ${xhr.response}`);
     }
   };
-
-  xhr.onerror = function() {
-    alert("Запрос не удался");
+  xhr.onerror = function () {
+    console.log("Запрос не удался");
   };
+  
 
 };
 
@@ -57,7 +61,7 @@ createRequest({
     password: 'odinodin'
   },
   method: 'POST',
-  callback: (e,r) => {
-    console.log(e,r)
-    }
+  callback: (e, r) => {
+    console.log(e, r)
+  }
 })
