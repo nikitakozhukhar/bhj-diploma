@@ -28,9 +28,11 @@ const createRequest = (options = {}) => {
       xhr.send(formData);
       
     }
+    // xhr.send(formData);
+      
   }
   try {
-    callback = (err, response) => {
+    callback: (err, response) => {
       console.log('Ошибка, если есть', err);
       console.log('Данные, если нет ошибки', response);
     }
