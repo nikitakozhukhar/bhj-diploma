@@ -3,14 +3,14 @@
  * на сервер.
  * */
 const createRequest = (options = {}) => {
-
+  if (!options.method || !options.url) {
+    return
+  }
   const xhr = new XMLHttpRequest();
   const formData = new FormData();
   xhr.responseType = 'json';
 
-  if (!options.method || !options.url) {
-    return
-  }
+ 
 
   xhr.open(options.method, options.url);
   console.log(xhr.respose);
@@ -23,12 +23,9 @@ const createRequest = (options = {}) => {
     for (let [key, value] of Object.entries(options.data)) {
       console.log(key, value);
       formData.append(key, value);
-      
       xhr.open(options.method, options.url)
-      xhr.send(formData);
-      
     }
-    // xhr.send(formData);
+    xhr.send(formData);
       
   }
   try {
