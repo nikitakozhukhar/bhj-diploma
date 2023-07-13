@@ -29,7 +29,6 @@ class AsyncForm {
     const forms = document.querySelectorAll('.form');
     forms.forEach(form => {
       form.addEventListener('click', e => {
-        e.target.preventDefault()
         this.submit();
       })
     })

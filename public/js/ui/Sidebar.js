@@ -37,7 +37,6 @@ class Sidebar {
     const auth = document.querySelector('.menu-item_login');
     auth.addEventListener('click', () => {
       App.getModal( 'login' ).open();
-      AsyncForm.getData();
     })
 
     const register = document.querySelector('.menu-item_register');
