@@ -10,29 +10,27 @@ const createRequest = (options = {}) => {
   const formData = new FormData();
   xhr.responseType = 'json';
 
- 
-
   xhr.open(options.method, options.url);
-  console.log(xhr.respose);
-  if (options.method == 'GET') {
-    xhr.send();
-    console.log(xhr.respose);
-  }
-  if (options.method == 'POST') {
 
-    for (let [key, value] of Object.entries(options.data)) {
-      console.log(key, value);
-      formData.append(key, value);
-      xhr.open(options.method, options.url)
-    }
-    xhr.send(formData);
-      
-  }
+  // console.log(xhr.respose);
+
   try {
-    callback: (err, response) => {
-      console.log('Ошибка, если есть', err);
-      console.log('Данные, если нет ошибки', response);
+
+    if (options.method == 'GET') {
+      xhr.send();
+      console.log(xhr.respose);
     }
+
+    if (options.method == 'POST') {
+  
+      for (let [key, value] of Object.entries(options.data)) {
+        console.log(key, value);
+        formData.append(key, value);
+        // xhr.open(options.method, options.url)
+      }
+      xhr.send(formData);
+    }
+    options.callback()
   }
   catch (error) {
     console.error('Ошибка, если есть', error);
@@ -45,10 +43,6 @@ const createRequest = (options = {}) => {
       console.log(`Готово, получили ${xhr.response}`);
     }
   };
-  xhr.onerror = function () {
-    console.log("Запрос не удался");
-  };
-  
 
 };
 

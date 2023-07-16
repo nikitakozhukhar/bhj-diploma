@@ -26,13 +26,13 @@ class AsyncForm {
    * вызывает метод submit()
    * */
   registerEvents() {
-    const forms = document.querySelectorAll('.form');
-    forms.forEach(form => {
-      form.addEventListener('click', e => {
-        this.submit();
+
+    this.element.addEventListener('submit', e => {
+        e.preventDefault();
+        this.getData();
       })
-    })
-  }
+    }
+  
 
   /**
    * Преобразует данные формы в объект вида
@@ -42,18 +42,18 @@ class AsyncForm {
    * }
    * */
   getData() {
-    const form = document.querySelector('.form'),
-    formData = new FormData(form),
+   
+    const formData = new FormData(this.element),
     entries = formData.entries();
+    const data = {};
+    console.log(entries)
 
+    //переписать на reduce
     for (let item of entries ) {
-      const key = item[0],
-      value = item[1];
-      console.log(`${key}: ${value}`)
+      data[item[0]] = item[1];
     }
-    return {
-      key: value
-    }
+    return data
+    
   }
 
   onSubmit(options){
