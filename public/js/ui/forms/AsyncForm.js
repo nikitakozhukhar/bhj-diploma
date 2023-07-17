@@ -46,12 +46,12 @@ class AsyncForm {
     const formData = new FormData(this.element),
     entries = formData.entries();
     const data = {};
-    console.log(entries)
 
     //переписать на reduce
     for (let item of entries ) {
       data[item[0]] = item[1];
     }
+    console.log(data)
     return data
     
   }
@@ -65,6 +65,6 @@ class AsyncForm {
    * данные, полученные из метода getData()
    * */
   submit() {
-
+    this.onSubmit(this.getData())
   }
 }
