@@ -40,21 +40,21 @@ const createRequest = (options = {}) => {
     if (xhr.status != 200) {
       console.log(`Ошибка ${xhr.status}: ${xhr.statusText}`);
     } else {
-      console.log(`Готово, получили ${xhr.response}`);
+      console.log('Готово, получили' + xhr.response);
     }
   };
 
 };
 
 
-createRequest({
-  url: '/user',
-  data: {
-    mail: 'ivan@biz.pro',
-    password: 'odinodin'
-  },
-  method: 'POST',
-  callback: (e, r) => {
-    console.log(e, r)
-  }
-})
+// createRequest({
+//   url: '/user',
+//   data: {
+//     mail: 'ivan@biz.pro',
+//     password: 'odinodin'
+//   },
+//   method: 'POST',
+//   callback: (e, r) => {
+//     console.log(e, r)
+//   }
+// })
