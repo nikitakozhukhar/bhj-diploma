@@ -47,14 +47,14 @@ const createRequest = (options = {}) => {
 };
 
 
-// createRequest({
-//   url: '/user',
-//   data: {
-//     mail: 'ivan@biz.pro',
-//     password: 'odinodin'
-//   },
-//   method: 'POST',
-//   callback: (e, r) => {
-//     console.log(e, r)
-//   }
-// })
+createRequest({
+  url: '/user',
+  data: {
+    mail: 'ivan@biz.pro',
+    password: 'odinodin'
+  },
+  method: 'POST',
+  callback: (e, r) => {
+    console.log(e, r)
+  }
+})

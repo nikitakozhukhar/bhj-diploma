@@ -86,6 +86,7 @@ class User {
       data,
       callback: (err, response) => {
         if (response && response.user) {
+          console.log(response)
           this.setCurrent(response.user);
         }
         callback(err, response);
