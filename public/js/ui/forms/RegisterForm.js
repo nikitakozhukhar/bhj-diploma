@@ -11,8 +11,8 @@ class RegisterForm extends AsyncForm {
    * */
   onSubmit(data) {
     User.register(data, () => {
-      
-      App.setState( 'user-logged' ).close()
+      console.log(data)
+      // App.setState( 'user-logged' ).close()
     })
   }
 }
