@@ -27,7 +27,7 @@ class Entity {
     createRequest({
       url: this.URL,
       data: data,
-      method: 'GET',
+      method: 'PUT',
       callback: callback
     })
   }
@@ -40,7 +40,7 @@ class Entity {
     createRequest({
       url: this.URL,
       data: data,
-      method: 'GET',
+      method: 'DELETE',
       callback: callback
     })
   }

@@ -83,7 +83,7 @@ class User {
       url: this.URL + '/register',
       method: 'POST',
       responseType: 'json',
-      data,
+      data: data,
       callback: (err, response) => {
         if (response && response.user) {
           console.log(response)

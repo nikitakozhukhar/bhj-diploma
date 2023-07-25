@@ -11,6 +11,9 @@ class LoginForm extends AsyncForm {
    * */
   onSubmit(data) {
     console.log(data)
-    // User.login(data)
+    User.login(data, () => {
+      App.setState( 'user-logged' );
+      App.getModal('login').close()
+    })
   }
 }
