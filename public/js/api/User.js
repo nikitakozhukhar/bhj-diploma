@@ -40,8 +40,8 @@ class User {
       method: 'GET',
       responseType: 'json',
       callback: (err, response) => {
-        if (response && response.user) {
-          this.setCurrent(response.user.name);
+        if (response && response.user.id) {
+          this.setCurrent(response.user.id);
         }
         if (!response.success) {
           this.unsetCurrent(response.user)
@@ -86,7 +86,7 @@ class User {
       data: data,
       callback: (err, response) => {
         if (response && response.user) {
-          console.log(response)
+          console.log('response')
           this.setCurrent(response.user);
         }
         callback(err, response);

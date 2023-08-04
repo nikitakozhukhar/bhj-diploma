@@ -2,6 +2,8 @@
  * Основная функция для совершения запросов
  * на сервер.
  * */
+
+
 const createRequest = (options = {}) => {
   if (!options.method || !options.url) {
     return
@@ -12,6 +14,10 @@ const createRequest = (options = {}) => {
 
   xhr.open(options.method, options.url);
 
+  options.callback = (err, response) => {
+    console.log( err );
+    console.log( response );
+  }
   try {
 
     if (options.method == 'GET') {
@@ -22,11 +28,11 @@ const createRequest = (options = {}) => {
       for (let [key, value] of Object.entries(options.data)) {
         formData.append(key, value);
       }
-      
+     
       xhr.send(formData);
     }
 
-    options.callback()
+   
   }
 
   catch (error) {
@@ -37,7 +43,8 @@ const createRequest = (options = {}) => {
     if (xhr.status != 200) {
       console.log(`Ошибка ${xhr.status}: ${xhr.statusText}`);
     } else {
-      console.log(xhr.response.error);
+      console.log(xhr.response);
+      console.log();
     }
   };
 
@@ -45,7 +52,7 @@ const createRequest = (options = {}) => {
 
 
 // createRequest({
-//   url: '/user',
+//   url: 'user',
 //   data: {
 //     mail: 'ivan@biz.pro',
 //     password: 'odinodin'
