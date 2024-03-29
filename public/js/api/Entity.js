@@ -10,11 +10,12 @@ class Entity {
    * (в зависимости от того, что наследуется от Entity)
    * */
   static list(data, callback){
+    
     createRequest({
       url: this.URL,
       data: data,
       method: 'GET',
-      callback: callback
+      callback
     })
   }
 
@@ -24,11 +25,12 @@ class Entity {
    * что наследуется от Entity)
    * */
   static create(data, callback) {
+    // debugger
     createRequest({
       url: this.URL,
       data: data,
       method: 'PUT',
-      callback: callback
+      callback
     })
   }
 

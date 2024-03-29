@@ -13,11 +13,25 @@ const createRequest = (options = {}) => {
   xhr.responseType = 'json';
 
   xhr.open(options.method, options.url);
+ 
+  // console.log(xhr)
 
-  options.callback = (err, response) => {
-    console.log( err );
-    console.log( response );
-  }
+  xhr.onload = function () {
+    if (xhr.status != 200) {
+      console.log(`Ошибка ${xhr.status}: ${xhr.statusText}`);
+      return
+    } 
+    if (!options.callback) {
+      return
+    }
+    // if(xhr.response.error) {
+    //   throw new Error(xhr.response.error)
+    // }
+    // console.log(xhr.response)
+    options.callback(xhr.response)
+    
+  };
+  
   try {
 
     if (options.method == 'GET') {
@@ -25,29 +39,19 @@ const createRequest = (options = {}) => {
     }
 
     if (options.method == 'POST') {
+      
       for (let [key, value] of Object.entries(options.data)) {
         formData.append(key, value);
       }
-     
       xhr.send(formData);
     }
-
-   
   }
 
   catch (error) {
+    
     console.error('Ошибка, если есть', error);
   }
  
-  xhr.onload = function () {
-    if (xhr.status != 200) {
-      console.log(`Ошибка ${xhr.status}: ${xhr.statusText}`);
-    } else {
-      console.log(xhr.response);
-      console.log();
-    }
-  };
-
 };
 
 

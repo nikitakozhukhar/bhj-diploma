@@ -20,6 +20,7 @@ class Sidebar {
   static initToggleButton() {
     const openButton = document.querySelector('.sidebar-toggle');
     const sideBarMini = document.querySelector('.sidebar-mini');
+
     openButton.addEventListener('click', () => {
       sideBarMini.classList.toggle('sidebar-open');
       sideBarMini.classList.toggle('sidebar-collapse')
@@ -46,10 +47,17 @@ class Sidebar {
 
     const logout = document.querySelector('.menu-item_logout');
     logout.addEventListener('click', () => {
-      User.logout();
-      if (response.success == 'true'){
-        App.setState( 'init' )
-      }
+       let callback = function(response, err) {
+        console.log(response);
+        if (response.success == true) {
+          App.setState('init');
+        }
+      };
+      User.logout(callback);
+      
+      // if (response.success == 'true'){
+      //   App.setState( 'init' )
+      // }
     })
   }
 }

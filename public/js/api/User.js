@@ -35,18 +35,22 @@ class User {
    * авторизованном пользователе.
    * */
   static fetch(callback) {
+    // debugger
     createRequest({
       url: this.URL + '/current',
       method: 'GET',
       responseType: 'json',
-      callback: (err, response) => {
-        if (response && response.user.id) {
-          this.setCurrent(response.user.id);
+      callback: (response, err) => {
+        if (response.error) {
+          return console.error(response.error)
+        }
+        if (response && response.user) {
+          this.setCurrent(response.user);
         }
         if (!response.success) {
           this.unsetCurrent(response.user)
         }
-        callback(err, response);
+        callback(response, err);
       }
     });
   }
@@ -63,8 +67,12 @@ class User {
       method: 'POST',
       responseType: 'json',
       data,
-      callback: (err, response) => {
+      callback: (response, err) => {
+        if (err) {
+         return console.error(err);
+        }
         if (response && response.user) {
+          
           this.setCurrent(response.user);
         }
         callback(err, response);
@@ -86,7 +94,7 @@ class User {
       data: data,
       callback: (err, response) => {
         if (response && response.user) {
-          console.log('response')
+          
           this.setCurrent(response.user);
         }
         callback(err, response);
@@ -99,16 +107,19 @@ class User {
    * выхода необходимо вызвать метод User.unsetCurrent
    * */
   static logout(callback) {
+    // debugger не создает xhr объект
     createRequest({
       url: this.URL + '/logout',
       method: 'POST',
       responseType: 'json',
-      data,
-      callback: (err, response) => {
-        if (response && response.user) {
-          this.unsetCurrent(response.user);
+      callback: (response, err) => {
+        if (!response.success) {
+          return console.log(err)
         }
-        callback(err, response);
+        if (response.success) {
+          this.unsetCurrent();
+        }
+        callback(response, err);
       }
     });
   }

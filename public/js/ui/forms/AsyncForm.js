@@ -17,6 +17,7 @@ class AsyncForm {
     if (!element) {
       throw new Error('Элемент не получен')
     } else {
+      
       this.registerEvents();
     }
   }
@@ -29,7 +30,7 @@ class AsyncForm {
 
     this.element.addEventListener('submit', e => {
         e.preventDefault();
-        this.getData();
+        this.submit();
       })
     }
   
@@ -44,14 +45,14 @@ class AsyncForm {
   getData() {
    
     const formData = new FormData(this.element),
-    entries = formData.entries();
-    const data = {};
-
+    entries = formData.entries(),
+    data = {};
+    
     //переписать на reduce
     for (let item of entries ) {
+      // console.log(item)
       data[item[0]] = item[1];
     }
-    // console.log(data)
     return data
     
   }
